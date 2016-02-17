@@ -1,0 +1,19 @@
+
+<p>Name: <%= @product.name %></p>
+<p>Description: <%= @product.description %></p> 
+<p>Price: <%= @product.pricing %></p>
+<p>Category: <%= @product.category.name %></p>
+
+<a href="/products/<%= @product.id %>/edit">Edit</a>
+<a href="/products">Back</a>
+
+<h1>Comment:</h1>
+<form action="/comments/create/<%= @product.id %>" method="post">
+	<input type="hidden" name="authenticity_token" value="<% form_authenticity_token %>">
+	<textarea type="text" name="comment"></textarea>
+	<input type="submit" value="Submit">
+</form>
+<% @comments.each do |com| %>
+	<p><%= com.comment %> - <%= com.created_at.strftime("%m/%d/%Y") %></p>
+<% end %>
+		
